@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>1_basic_syntax</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>4_higher_order_functions</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 <style type="text/css">
@@ -11775,15 +11775,8 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2>Variable Declaration</h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Salah satu cara mendeklarasikan suatu variabel adalah dengan menggunakan <i>keyword</i> <code>var</code> lalu diikuti dengan nama variabel</p>
+<p><h2>Map</h2></p>
+<p>Fungsi yang digunakan untuk memetakan dan mengubah elemen-elemen pada suatu array menjadi array baru</p>
 </div>
 </div>
 </div>
@@ -11792,11 +11785,15 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-javascript"><pre><span></span><span class="c1">// deklarasi dan inisialisasi variabel dengan nama myVar dengan nilai 3</span>
-<span class="kd">var</span> <span class="nx">myVar</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<div class=" highlight hl-javascript"><pre><span></span><span class="kd">var</span> <span class="nx">myArr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;myArr: &quot;</span><span class="p">,</span> <span class="nx">myArr</span><span class="p">);</span>
 
-<span class="c1">// tampilkan nilai variabel myVar ke console</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myVar</span><span class="p">);</span>
+<span class="kd">function</span> <span class="nx">power_of_two</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// fungsi untuk memangkat-dua-kan suatu angka</span>
+    <span class="k">return</span> <span class="nx">x</span> <span class="o">*</span> <span class="nx">x</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nx">newArr</span> <span class="o">=</span> <span class="nx">myArr</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">power_of_two</span><span class="p">);</span> <span class="c1">// seluruh elemen pada myArr dipangkatkan dua</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;newArr: &quot;</span><span class="p">,</span> <span class="nx">newArr</span><span class="p">);</span>
 </pre></div>
 
 </div>
@@ -11813,7 +11810,8 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>3
+<pre>myArr:  [ 1, 2, 3, 4, 5 ]
+newArr:  [ 1, 4, 9, 16, 25 ]
 </pre>
 </div>
 </div>
@@ -11826,17 +11824,25 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Nilai suatu variabel adalah <code>undefined</code> jika dideklarasikan tanpa diberi nilai</p>
+<p><h2>Filter</h2></p>
+<p>Fungsi untuk memfilter suatu array ke array baru sesuai dengan kondisi yang dibuat.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-javascript"><pre><span></span><span class="kd">var</span> <span class="nx">a</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span> <span class="c1">// secara default suatu variabel bernilai undefined jika tidak diinisialisasi</span>
+<div class=" highlight hl-javascript"><pre><span></span><span class="kd">var</span> <span class="nx">myArr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;myArr: &quot;</span><span class="p">,</span> <span class="nx">myArr</span><span class="p">);</span>
+
+<span class="kd">function</span> <span class="nx">is_even</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// fungsi untuk mengecek apakah suatu angka merupakan angka genap</span>
+    <span class="k">return</span> <span class="nx">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nx">newArr</span> <span class="o">=</span> <span class="nx">myArr</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">is_even</span><span class="p">);</span> <span class="c1">// ambil elemen myArr yang merupakan angka genap</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;newArr: &quot;</span><span class="p">,</span> <span class="nx">newArr</span><span class="p">);</span>
 </pre></div>
 
 </div>
@@ -11853,7 +11859,8 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>undefined
+<pre>myArr:  [ 1, 2, 3, 4, 5 ]
+newArr:  [ 2, 4 ]
 </pre>
 </div>
 </div>
@@ -11866,65 +11873,8 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><h2>Data Type</h2></p>
-<p>Untuk melihat tipe data dari suatu nilai, kita dapat menggunakan fungsi <code>typeof</code></p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-javascript"><pre><span></span><span class="kd">var</span> <span class="nx">myInt</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
-<span class="kd">var</span> <span class="nx">myName</span> <span class="o">=</span> <span class="s2">&quot;Azhary&quot;</span><span class="p">;</span>
-<span class="kd">var</span> <span class="nx">pi</span> <span class="o">=</span> <span class="mf">3.14</span><span class="p">;</span>
-<span class="kd">var</span> <span class="nx">myBool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
-<span class="kd">var</span> <span class="nx">myUndefined</span> <span class="o">=</span> <span class="kc">undefined</span><span class="p">;</span>
-<span class="kd">var</span> <span class="nx">myNull</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Variabel myInt bernilai &quot;</span> <span class="o">+</span> <span class="nx">myInt</span> <span class="o">+</span> <span class="s2">&quot; dengan tipe &quot;</span> <span class="o">+</span> <span class="k">typeof</span><span class="p">(</span><span class="nx">myInt</span><span class="p">));</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Variabel myName bernilai &quot;</span> <span class="o">+</span> <span class="nx">myName</span> <span class="o">+</span> <span class="s2">&quot; dengan tipe &quot;</span> <span class="o">+</span> <span class="k">typeof</span><span class="p">(</span><span class="nx">myName</span><span class="p">));</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Variabel pi bernilai &quot;</span> <span class="o">+</span> <span class="nx">pi</span> <span class="o">+</span> <span class="s2">&quot; dengan tipe &quot;</span> <span class="o">+</span> <span class="k">typeof</span><span class="p">(</span><span class="nx">pi</span><span class="p">));</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Variabel myBool bernilai &quot;</span> <span class="o">+</span> <span class="nx">myBool</span> <span class="o">+</span> <span class="s2">&quot; dengan tipe &quot;</span> <span class="o">+</span> <span class="k">typeof</span><span class="p">(</span><span class="nx">myBool</span><span class="p">));</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Variabel myUndefined bernilai &quot;</span> <span class="o">+</span> <span class="nx">myUndefined</span> <span class="o">+</span> <span class="s2">&quot; dengan tipe &quot;</span> <span class="o">+</span> <span class="k">typeof</span><span class="p">(</span><span class="nx">myUndefined</span><span class="p">));</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Variabel myNull bernilai &quot;</span> <span class="o">+</span> <span class="nx">myNull</span> <span class="o">+</span> <span class="s2">&quot; dengan tipe &quot;</span> <span class="o">+</span> <span class="k">typeof</span><span class="p">(</span><span class="nx">myNull</span><span class="p">));</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Variabel myInt bernilai 4 dengan tipe number
-Variabel myName bernilai Azhary dengan tipe string
-Variabel pi bernilai 3.14 dengan tipe number
-Variabel myBool bernilai true dengan tipe boolean
-Variabel myUndefined bernilai undefined dengan tipe undefined
-Variabel myNull bernilai null dengan tipe object
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><h2>Loosely-typed Variable</h2></p>
-<p style="font-size: 16px;">Tipe data variabel dalam JavaScript bersifat <i>loosely-typed</i>, artinya tipe data suatu variabel dapat berubah-ubah di tengah jalannya program</p>
+<p><h2>Reduce</h2></p>
+<p>Fungsi untuk menggabungkan dua elemen yang bersebelahan pada array menjadi satu elemen</p>
 </div>
 </div>
 </div>
@@ -11933,11 +11883,16 @@ Variabel myNull bernilai null dengan tipe object
 <div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-javascript"><pre><span></span><span class="kd">var</span> <span class="nx">myVar</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span> <span class="c1">// awalnya myVar bertipe data number</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="nx">myVar</span><span class="p">));</span>
+<div class=" highlight hl-javascript"><pre><span></span><span class="kd">var</span> <span class="nx">myArr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;myArr: &quot;</span><span class="p">,</span> <span class="nx">myArr</span><span class="p">);</span>
 
-<span class="nx">myVar</span> <span class="o">=</span> <span class="s2">&quot;Synapse&quot;</span><span class="p">;</span> <span class="c1">// disini tipe data myVar berubah menjadi string</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="nx">myVar</span><span class="p">));</span>
+<span class="kd">function</span> <span class="nx">addition</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// fungsi untuk menjumlahkan dua angka</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span> <span class="o">+</span> <span class="s2">&quot; + &quot;</span> <span class="o">+</span> <span class="nx">y</span> <span class="o">+</span> <span class="s2">&quot; = &quot;</span> <span class="o">+</span> <span class="p">(</span><span class="nx">x</span> <span class="o">+</span> <span class="nx">y</span><span class="p">));</span>
+    <span class="k">return</span> <span class="nx">x</span> <span class="o">+</span> <span class="nx">y</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nx">newArr</span> <span class="o">=</span> <span class="nx">myArr</span><span class="p">.</span><span class="nx">reduce</span><span class="p">(</span><span class="nx">addition</span><span class="p">);</span> <span class="c1">// jumlahkan tiap dua elemen yang bersebelahan pada myArr</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;newArr: &quot;</span><span class="p">,</span> <span class="nx">newArr</span><span class="p">);</span>
 </pre></div>
 
 </div>
@@ -11954,703 +11909,12 @@ Variabel myNull bernilai null dengan tipe object
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>number
-string
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><h2>Mathematical Operator</h2></p>
-<table>
-    <thead>
-        <tr>
-            <th>Operator</th>
-            <th>Deskripsi</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td style="text-align: center;">+</td>
-            <td>Penjumlahan</td>
-        </tr>
-        <tr>
-            <td style="text-align: center;">-</td>
-            <td>Pengurangan</td>
-        </tr>
-        <tr>
-            <td style="text-align: center;">*</td>
-            <td>Perkalian</td>
-        </tr>
-        <tr>
-            <td style="text-align: center;">/</td>
-            <td>Pembagian</td>
-        </tr>
-        <tr>
-            <td style="text-align: center;">%</td>
-            <td>Modulo</td>
-        </tr>
-    </tbody>
-</table>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-javascript"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">3</span><span class="p">);</span> <span class="c1">// 5</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">5</span> <span class="o">-</span> <span class="mi">2</span><span class="p">);</span> <span class="c1">// 3</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="mi">3</span><span class="p">);</span> <span class="c1">// 9</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">4</span> <span class="o">/</span> <span class="mi">3</span><span class="p">);</span> <span class="c1">// 1.33</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">5</span> <span class="o">%</span> <span class="mi">3</span><span class="p">);</span> <span class="c1">// 2</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>5
-3
-9
-1.3333333333333333
-2
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><h2>Conditional Statement</h2></p>
-<p>Blok <code>if-else</code></p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-javascript"><pre><span></span><span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
-
-<span class="k">if</span> <span class="p">(</span><span class="nx">x</span> <span class="o">==</span> <span class="mi">7</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;x bernilai 7&quot;</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="k">else</span>
-<span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;x bukan bernilai 7&quot;</span><span class="p">);</span>
-<span class="p">}</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>x bernilai 7
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Blok <code>if - else if - else</code></p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-javascript"><pre><span></span><span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
-
-<span class="k">if</span> <span class="p">(</span><span class="nx">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;x bernilai positif&quot;</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">x</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;x bernilai negatif&quot;</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="k">else</span>
-<span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;x bernilai 0&quot;</span><span class="p">);</span>
-<span class="p">}</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>x bernilai positif
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><h2>Comparison and Logical Operators</h2></p>
-<table>
-    <thead>
-        <tr>
-            <th>Operator</th>
-            <th>Deskripsi</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td style="text-align: center;">==</td>
-            <td>Sama dengan</td>
-        </tr>
-        <tr>
-            <td style="text-align: center;">!=</td>
-            <td>Tidak sama dengan</td>
-        </tr>
-        <tr>
-            <td style="text-align: center;">&gt;</td>
-            <td>Lebih besar</td>
-        </tr>
-        <tr>
-            <td style="text-align: center;">&lt;</td>
-            <td>Lebih kecil</td>
-        </tr>
-        <tr>
-            <td style="text-align: center;">&gt;=</td>
-            <td>Lebih besar sama dengan</td>
-        </tr>
-        <tr>
-            <td style="text-align: center;">&lt;=</td>
-            <td>Lebih kecil sama dengan</td>
-        </tr>
-        <tr>
-            <td style="text-align: center;">||</td>
-            <td>Atau</td>
-        </tr>
-        <tr>
-            <td style="text-align: center;">&amp;&amp;</td>
-            <td>Dan</td>
-        </tr>
-    </tbody>
-</table>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-javascript"><pre><span></span><span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span> <span class="o">==</span> <span class="mi">7</span><span class="p">);</span> <span class="c1">// true</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span> <span class="o">&gt;</span> <span class="mi">7</span><span class="p">);</span> <span class="c1">// false</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span> <span class="o">&gt;=</span> <span class="mi">7</span><span class="p">);</span> <span class="c1">// true</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span> <span class="o">!=</span> <span class="mi">7</span><span class="p">);</span> <span class="c1">// false</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span> <span class="o">&lt;</span> <span class="mi">7</span><span class="p">);</span> <span class="c1">// false</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span> <span class="o">&lt;=</span> <span class="mi">7</span><span class="p">);</span> <span class="c1">// true</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span> <span class="o">&gt;=</span> <span class="mi">7</span> <span class="o">||</span> <span class="nx">x</span> <span class="o">&lt;</span> <span class="mi">7</span><span class="p">);</span> <span class="c1">// true or false -&gt; true</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span> <span class="o">&gt;=</span> <span class="mi">7</span> <span class="o">&amp;&amp;</span> <span class="nx">x</span> <span class="o">&lt;</span> <span class="mi">7</span><span class="p">);</span> <span class="c1">// true and false -&gt; false</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>true
-false
-true
-false
-false
-true
-true
-false
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><h2>Strict Comparison</h2></p>
-<p>Operator '==' mengecek nilai antar dua variabel, sedangkan operator '===' mengecek nilai dan tipe data antar dua variabel</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-javascript"><pre><span></span><span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
-<span class="k">if</span> <span class="p">(</span><span class="nx">x</span> <span class="o">==</span> <span class="s2">&quot;7&quot;</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;x bernilai 7&quot;</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="k">else</span>
-<span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;x bukan bernilai 7&quot;</span><span class="p">);</span>
-<span class="p">}</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>x bernilai 7
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-javascript"><pre><span></span><span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
-<span class="k">if</span> <span class="p">(</span><span class="nx">x</span> <span class="o">===</span> <span class="s2">&quot;7&quot;</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;x bernilai 7&quot;</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="k">else</span>
-<span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;x bukan bernilai 7&quot;</span><span class="p">);</span>
-<span class="p">}</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>x bukan bernilai 7
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-javascript"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">7</span> <span class="o">==</span> <span class="s2">&quot;7&quot;</span><span class="p">);</span> <span class="c1">// true</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">7</span> <span class="o">===</span> <span class="s2">&quot;7&quot;</span><span class="p">);</span> <span class="c1">// false</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">7</span> <span class="o">!==</span> <span class="s2">&quot;7&quot;</span><span class="p">);</span> <span class="c1">// true</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="kc">false</span> <span class="o">==</span> <span class="mi">0</span><span class="p">);</span> <span class="c1">// true</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="kc">true</span> <span class="o">==</span> <span class="mi">1</span><span class="p">);</span> <span class="c1">// true</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="kc">true</span> <span class="o">===</span> <span class="mi">1</span><span class="p">);</span> <span class="c1">// false</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>true
-false
-true
-true
-true
-false
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><h2>Loops</h2></p>
-<p>Salah satu cara untuk membuat perulangan dengan menggunakan <i>keyword</i> <code>for</code> dengan format <code>for (start; loop condition; increment/decrement)</code></p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-javascript"><pre><span></span><span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
-<span class="p">}</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>0
-1
-2
-3
-4
-5
-6
-7
-8
-9
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-javascript"><pre><span></span><span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
-<span class="p">}</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>10
-9
-8
-7
-6
-5
-4
-3
-2
-1
-0
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2>Functions</h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-javascript"><pre><span></span><span class="kd">function</span> <span class="nx">add_two</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="c1">// fungsi dengan nama add_two dan memiliki parameter x dan y</span>
-<span class="p">{</span>
-    <span class="k">return</span> <span class="nx">x</span> <span class="o">+</span> <span class="nx">y</span><span class="p">;</span> <span class="c1">// nilai balikan</span>
-<span class="p">}</span>
-
-<span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">add_two</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span> <span class="c1">// memanggil fungsi</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>3
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><code>function</code> juga dapat dianggap sebagai nilai dan disimpan ke dalam variabel</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-javascript"><pre><span></span><span class="kd">var</span> <span class="nx">multiply</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">x</span> <span class="o">*</span> <span class="nx">y</span><span class="p">;</span>
-<span class="p">};</span>
-
-<span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="nx">multiply</span><span class="p">;</span> <span class="c1">// fungsi disimpan ke variabel c</span>
-<span class="kd">var</span> <span class="nx">d</span> <span class="o">=</span> <span class="nx">multiply</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span> <span class="c1">// nilai balikan dari fungsi disimpan ke variabel d</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">c</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">));</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">d</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="nx">multiply</span><span class="p">));</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>6
-16
-function
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Terdapat objek <code>arguments</code> pada <code>function</code> yang berisi nilai-nilai yang diberikan sebagai parameternya</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-javascript"><pre><span></span><span class="kd">function</span> <span class="nx">pass_no_args</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">z</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arguments</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="nx">pass_no_args</span><span class="p">();</span>
-<span class="nx">pass_no_args</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-<span class="nx">pass_no_args</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>{}
-{ &#39;0&#39;: 2 }
-{ &#39;0&#39;: 3, &#39;1&#39;: 5 }
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Parameter pada suatu <code>function</code> dapat diberikan nilai <i>default</i> dengan menggunakan teknik <i>null coalesce</i></p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-javascript"><pre><span></span><span class="kd">function</span> <span class="nx">func_with_default_args</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">y</span> <span class="o">||</span> <span class="mi">2</span><span class="p">;</span>
-    
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;x is&quot;</span><span class="p">,</span> <span class="nx">x</span><span class="p">);</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;y is&quot;</span><span class="p">,</span> <span class="nx">y</span><span class="p">);</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="nx">func_with_default_args</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
-<span class="nx">func_with_default_args</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>x is 5
-y is 2
- 
-x is 4
-y is 6
- 
+<pre>myArr:  [ 1, 2, 3, 4, 5 ]
+1 + 2 = 3
+3 + 3 = 6
+6 + 4 = 10
+10 + 5 = 15
+newArr:  15
 </pre>
 </div>
 </div>
