@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Blog Post</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="manifest" href="../assets/manifest.json">
+	<link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../assets/css/jquery.skeleton.css">
+</head>
+<body>
+	
+	<div class="container">
+		<h1 id="title">Blog Post App</h1>
+
+		<div class="row">
+			<div class="col-md-6">
+				<ul class="list-group" id="blog-post">
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="../assets/jquery-3.3.1.js"></script>
+	<script type="text/javascript" src="../assets/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../assets/js/jquery.scheletrone.js"></script>
+
+	<script type="text/javascript">
+		if ("serviceWorker" in navigator) {
+			navigator.serviceWorker.register("./service-worker.js")
+				.then(function(registration) {
+					console.log("Service worker registration succeeded:", registration);
+				})
+				.catch(function(error) {
+					console.log("Service worker registration failed:", error);
+				});
+		} else {
+			console.log("Service worker is not supported");
+		}
+
+		var baseUrl = "https://jsonplaceholder.typicode.com";
+		var skeletonLoader = "<li class=\"skeleton list-group-item list-group-item-action align-items-center\">" +
+				"<h5>Title</h5>" +
+				"<p>Content</p>" +
+			"</li>" +
+			"<li class=\"skeleton list-group-item list-group-item-action align-items-center\">" +
+				"<h5>Title</h5>" +
+				"<p>Content</p>" +
+			"</li>";
+
+		async function fetchPosts() {
+			$("#title").text("Blog Post App");
+			$("#blog-post").html(skeletonLoader);
+			$(".skeleton").scheletrone();
+
+			const url = baseUrl + "/posts?userId=1";
+			const response = await fetch(url);
+			let result = await response.json();
+
+			result.sort(function(x, y) { return y.id - x.id; });
+			
+			$("#blog-post").html("");
+			result.forEach(function(post) {
+				let html = "<li onclick=\"fetchComments(" + post.id + ");\" class=\"list-group-item list-group-item-action align-items-center\">" +
+					"<h5>" + post.title + "</h5>" +
+					"<p>" + post.body + "</p>"
+				"</li>";
+				$("#blog-post").append(html);
+			});
+		}
+
+		fetchPosts();
+
+		async function fetchComments(postId) {
+			$("#blog-post").html(skeletonLoader);
+			$(".skeleton").scheletrone();
+			$("#title").html("Comments <button class=\"btn btn-default\" type=\"button\" onclick=\"fetchPosts();\">Back</button>");
+
+			const url = baseUrl + "/comments?postId=" + postId;
+			const response = await fetch(url);
+			let result = await response.json();
+			
+			$("#blog-post").html("");
+			result.forEach(function(comment) {
+				let html = "<li class=\"list-group-item list-group-item-action align-items-center\">" +
+					"<h5>" + comment.name + "</h5>" +
+					"<p>" + comment.body + "</p>"
+				"</li>";
+				$("#blog-post").append(html);
+			});
+		}
+	</script>
+</body>
+</html>

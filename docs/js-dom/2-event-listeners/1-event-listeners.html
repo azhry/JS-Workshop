@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>1-event-listeners</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<div id="my-div">This is my div</div>
+	<button type="button" id="my-div-btn">Change my-div text</button>
+	
+	<div id="your-div">And this is your div</div>
+	<button type="button" onclick="changeYourDivHTML();">Change your-div html</button>
+
+	<div class="their-divs">This is their div</div>
+	<div class="their-divs">This is their div</div>
+	<button type="button" id="their-divs-btn">Change their divs</button>
+
+	<br>
+	<span>Loading...</span>
+
+	<script type="text/javascript">
+		let myDiv = document.querySelector("#my-div");
+		let myDivBtn = document.querySelector("#my-div-btn");
+		myDivBtn.addEventListener("click", function() {
+			myDiv.innerText = "Seriously, this is one and the only div of mine";
+		});
+
+		function changeYourDivHTML() {
+			let yourDiv = document.querySelector("#your-div");
+			yourDiv.innerHTML = "This is <strong>your</strong> div";
+		}
+
+		let theirDivs = document.querySelectorAll(".their-divs");
+		let theirDivsBtn = document.querySelector("#their-divs-btn");
+		theirDivsBtn.addEventListener("click", function() {
+			for (let i = 0; i < theirDivs.length; i++) {
+				theirDivs[i].innerText = "This div is edited via JavaScript";
+				theirDivs[i].style.fontSize = "25px";
+			}
+		});
+
+		let span = document.querySelector("span");
+		window.onload = function() {
+			setTimeout(function() {
+				span.innerText = "This is someone else span";
+			}, 2500);
+		};
+	</script>
+</body>
+</html>
