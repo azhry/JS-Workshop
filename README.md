@@ -27,13 +27,12 @@ Outline:
   </li>
   
   <li>
-    <p>Document Object Model</p>
-    <p><i>Coming soon</i></p>
+    <p><a href="https://github.com/azhry/JS-Workshop/tree/master/docs/js-dom">Document Object Model</a></p>
+  <p>Menjelaskan suatu halaman web atau dokumen sebagai <i>object model</i> yang dapat dimanipulasi melalui JavaScript untuk membuatnya menjadi interaktif</p>
   </li>
-  
   <li>
-    <p>Progressive Web Apps</p>
-    <p><i>Coming soon</i></p>
+    <p><a href="https://github.com/azhry/JS-Workshop/tree/master/docs/js-dom/4-service-worker">Progressive Web Apps</a></p>
+  <p>Menggunakan teknologi <i>Progressive Web Apps</i> untuk membuat suatu website dapat "di-install" melalui perangkat <i>mobile</i> sehingga menjadi suatu <i>mobile application</i> yang dapat bekerja secara online maupun offline dengan bantuan <i>javascript service worker</i></p>
   </li>
 </ol>
 
