@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>2-data-fetching</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css">
+</head>
+<body>
+	
+	<div class="container">
+		<h1>Blog Post App</h1>
+
+		<div class="row">
+			<div class="col-md-6">
+				<ul class="list-group" id="blog-post">
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="../assets/jquery-3.3.1.js"></script>
+	<script type="text/javascript" src="../assets/js/bootstrap.min.js"></script>
+
+	<script type="text/javascript">
+		(async function() {
+			const url = "https://jsonplaceholder.typicode.com/posts?userId=1";
+			const response = await fetch(url);
+			let result = await response.json();
+
+			result.sort(function(x, y) { return y.id - x.id; });
+			
+			result.forEach(function(post) {
+				let html = "<li class=\"list-group-item list-group-item-action align-items-center\">" +
+					"<h5>" + post.title + "</h5>" +
+					"<p>" + post.body + "</p>"
+				"</li>";
+				$("#blog-post").append(html);
+			});
+		})();
+	</script>
+</body>
+</html>

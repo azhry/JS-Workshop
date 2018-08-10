@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>2-jquery-listeners</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<div id="my-div">This is my div</div>
+	<button type="button" id="my-div-btn">Change my-div text</button>
+	
+	<div id="your-div">And this is your div</div>
+	<button type="button" onclick="changeYourDivHTML();">Change your-div html</button>
+
+	<div class="their-divs">This is their div</div>
+	<div class="their-divs">This is their div</div>
+	<button type="button" id="their-divs-btn">Change their divs</button>
+
+	<br>
+	<span>Loading...</span>
+
+	<script type="text/javascript" src="../assets/jquery-3.3.1.js"></script>
+	<script type="text/javascript">
+		$("#my-div-btn").on("click", function() {
+			$("#my-div").text("Seriously, this is one and the only div of mine");
+		});
+
+		function changeYourDivHTML() {
+			$("#your-div").html("This is <strong>your</strong> div");
+		}
+
+		$("#their-divs-btn").on("click", function() {
+			$(".their-divs").text("This div is edited via JavaScript")
+				.css("font-size", "25px");
+		});
+
+		$(window).on("load", function() {
+			setTimeout(function() {
+				$("span").text("This is someone else span");
+			}, 2500);
+		});
+	</script>
+</body>
+</html>

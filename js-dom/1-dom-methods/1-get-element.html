@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>1-get-element</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<div id="my-div">This is my div</div>
+	<div id="your-div">And this is your div</div>
+	<div class="their-divs">This is their div</div>
+	<div class="their-divs">This is their div</div>
+	<span>This is someone else span</span>
+
+	<script type="text/javascript">
+		let myDiv = document.getElementById("my-div");
+		myDiv.innerText = "Seriously, this is one and the only div of mine";
+
+		let yourDiv = document.getElementById("your-div");
+		yourDiv.innerHTML = "This is <strong>your</strong> div";
+
+		let theirDivs = document.getElementsByClassName("their-divs");
+		for (let i = 0; i < theirDivs.length; i++) {
+			theirDivs[i].innerText = "This div is edited via JavaScript";
+			theirDivs[i].style.fontSize = "25px";
+		}
+
+		let spans = document.getElementsByTagName("span");
+		for (let i = 0; i < spans.length; i++) {
+			spans[i].draggable = true;
+		}
+	</script>
+</body>
+</html>
